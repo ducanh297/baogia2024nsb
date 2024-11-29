@@ -1048,14 +1048,16 @@
         document.getElementById('content').innerText = message;
     }
 
-    // Hàm ẩn dòng nếu giá trị rỗng hoặc bằng 0
     function toggleRowVisibility(rowId, value) {
         const row = document.getElementById(rowId);
         if (row) {
-            const numericValue = parseFloat(value?.replace(/\./g, '').replace(',', '.') || '0');
+            // Chuyển value sang chuỗi nếu nó không phải chuỗi
+            const stringValue = typeof value === 'string' ? value : String(value || '');
+            const numericValue = parseFloat(stringValue.replace(/\./g, '').replace(',', '.') || '0');
             row.style.display = numericValue ? '' : 'none';
         }
     }
+
 
     // Khởi tạo ứng dụng
     initialize();
